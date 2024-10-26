@@ -1,0 +1,49 @@
+ion-content {
+  --background: #f8f8f8; /* Couleur de fond claire */
+  padding: 50%; /* Espacement autour du contenu */
+}
+
+ion-header {
+  background-color: var(--ion-color-primary); /* Couleur primaire d'Ionic */
+  color: white; /* Texte en blanc pour l'en-tête */
+  text-align: center;
+}
+
+ion-toolbar {
+  --background: var(--ion-color-primary); /* Assure que le toolbar utilise la couleur primaire */
+}
+
+form {
+  margin-top: 5%; /* Ajoute un espacement au-dessus du formulaire */
+}
+
+ion-item {
+  margin-bottom: 16px; /* Ajoute un espacement entre les éléments du formulaire */
+
+}
+
+ion-button {
+  margin-top: 16px; /* Ajoute un espacement au-dessus du bouton */
+  background-color: var(--ion-color-primary); /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte du bouton */
+}
+
+ion-router-link {
+  display: block; /* Permet au lien d'occuper toute la largeur */
+  text-align: center; /* Centre le texte du lien */
+  margin-top: 20px; /* Ajoute un espacement au-dessus du lien */
+  color: var(--ion-color-primary); /* Utilise la couleur primaire pour le lien */
+  text-decoration: underline; /* Souligne le lien pour le rendre plus visible */
+}
+
+ion-router-link:hover {
+  color: darkblue; /* Change la couleur au survol */
+}
+ion-label{
+  background-color: black;
+  color: pink;
+}
+
+ion-item {
+  background-color: var(--ion-background-color); /* Couleur de fond par défaut */
+}

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Se Connecter</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <ion-list>
+      <ion-input
+  type="email"
+  fill="solid"
+  label="Email"
+  labelPlacement="floating"
+  helperText="Enter a valid email"
+  errorText="Invalid email"
+  ngModel
+  email
+></ion-input>
+
+<br>
+<ion-input
+type="password"
+fill="solid"
+label="password"
+labelPlacement="floating"
+helperText="Enter a valid password"
+errorText="Invalid password"
+name="password" required
+></ion-input>
+
+    </ion-list>
+
+  
+
+    <ion-button expand="full" type="submit">Se connecter</ion-button>
+</form>
+
+  <ion-row>
+    <ion-col>
+      <ion-router-link routerLink="/create-account">Pas encore de compte ? Créer un compte</ion-router-link>
+    </ion-col>
+  </ion-row>
+</ion-content>
