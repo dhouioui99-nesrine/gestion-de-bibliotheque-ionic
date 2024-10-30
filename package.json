@@ -30,6 +30,7 @@
     "@capacitor/status-bar": "6.0.1",
     "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
     "@ionic/angular": "^8.0.0",
+    "date-fns": "^4.1.0",
     "firebase": "^10.14.1",
     "ionicons": "^7.0.0",
     "livre": "file:",

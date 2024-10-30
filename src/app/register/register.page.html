@@ -1,56 +1,52 @@
-
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Créer un Compte</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-title>Bibliothèque</ion-title>
+
+      <ion-button routerLink="/home">home</ion-button>
+     
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/register">register</ion-button>
+      <ion-button routerLink="/login">login</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inscription</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-    <ion-list>
-      <ion-item>
-        <ion-label position="floating">Full Name</ion-label>
-        <ion-input 
-          type="text" 
-          fill="solid" 
-          placeholder="Enter your full name"
-          [(ngModel)]="fullName" 
-          name="fullName" 
-          required>
-        </ion-input>
-      </ion-item>
+<ion-content>
+  <ion-item>
+    <ion-icon name="person-outline" slot="start" style="color: blue;"></ion-icon>
+    <ion-label position="floating" >Prénom</ion-label>
+    <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+  </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input 
-          type="email" 
-          fill="solid" 
-          placeholder="Enter your email" 
-          [(ngModel)]="email" 
-          name="email" 
-          required>
-        </ion-input>
-      </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Password</ion-label>
-        <ion-input 
-          type="password" 
-          fill="solid" 
-          placeholder="Enter your password" 
-          [(ngModel)]="password" 
-          name="password" 
-          required>
-        </ion-input>
-      </ion-item>
-    </ion-list>
 
-    <ion-button expand="full" type="submit">S'inscrire</ion-button>
-  </form>
-  
-  <ion-row>
-    <ion-col>
-      <ion-router-link routerLink="/login">Déjà un compte ? Se connecter</ion-router-link>
-    </ion-col>
-  </ion-row>
+
+  <ion-item>
+    <ion-icon name="mail-outline" slot="start" style="color: blue;"></ion-icon>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-icon name="lock-closed-outline" slot="start" style="color: blue;"></ion-icon>
+    <ion-label position="floating">Mot de passe</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+
+  <ion-button expand="block" (click)="register()"  style="--background:blue; color: #ffffff;">
+    Inscription
+  </ion-button>
+
 </ion-content>

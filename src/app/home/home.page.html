@@ -1,10 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+
+<!-- src/app/navbar/navbar.component.html -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-title>Bibliothèque</ion-title>
+
+      <ion-button routerLink="/home">home</ion-button>
+     
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/register">register</ion-button>
+      <ion-button routerLink="/login">login</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -14,10 +28,8 @@
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    html
-Copier le code
-<ion-button routerLink="/livre">Ajouter un Livre</ion-button>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <strong>Bienvenue sur mon bibliotheque</strong>
+    
+
   </div>
 </ion-content>

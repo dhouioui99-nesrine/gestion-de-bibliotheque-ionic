@@ -1,33 +1,40 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, Firestore, getDocs } from 'firebase/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LivreService {
+  private collectionName = 'livres';
 
-  private livresCollection = 'livres';
+  constructor(private firestore: AngularFirestore) {}
 
-  constructor(private firestore: Firestore) {}
 
-  async addLivre(livre: { title: string; author: string; description: string }) {
-    try {
-      const livreRef = collection(this.firestore, this.livresCollection);
-      await addDoc(livreRef, livre);
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout du livre :', error);
-      throw error;
-    }
+  createlivres(livres: any): Promise<any> {
+
+    return this.firestore.collection(this.collectionName).add(livres);
   }
 
-  async getLivres() {
-    try {
-      const livreRef = collection(this.firestore, this.livresCollection);
-      const snapshot = await getDocs(livreRef);
-      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    } catch (error) {
-      console.error('Erreur lors de la récupération des livres :', error);
-      throw error;
-    }
+
+  getlivres(): Observable<any[]> {
+    return this.firestore.collection(this.collectionName).valueChanges({ idField: 'id' });
+  }
+
+
+  getlivresById(id: string): Observable<any> {
+    return this.firestore.collection(this.collectionName).doc(id).valueChanges();
+  }
+
+
+  updatelivres(id: string, livres: any): Promise<void> {
+    return this.firestore.collection(this.collectionName).doc(id).update(livres);
+  }
+
+
+  deletelivres(id: string): Promise<void> {
+    return this.firestore.collection(this.collectionName).doc(id).delete();
   }
 }

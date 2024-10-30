@@ -25,6 +25,34 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'list-livre',
+    loadChildren: () => import('./list-livre/list-livre.module').then( m => m.ListLivrePageModule)
+  },
+  {
+    path: 'list',
+    loadChildren: () => import('./user/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'list-emprunter',
+    loadChildren: () => import('./list-emprunter/list-emprunter.module').then( m => m.ListEmprunterPageModule)
+  },
+  {
+    path: 'home-user',
+    loadChildren: () => import('./home-user/home-user.module').then( m => m.HomeUserPageModule)
+  },
+  {
+    path: 'home-admin',
+    loadChildren: () => import('./home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
+  },
+  {
+    path: 'list-user',
+    loadChildren: () => import('./list-user/list-user.module').then( m => m.ListUserPageModule)
+  },
+  {
+    path: 'liste-retour',
+    loadChildren: () => import('./liste-retour/liste-retour.module').then( m => m.ListeRetourPageModule)
+  },
 
 ];
 

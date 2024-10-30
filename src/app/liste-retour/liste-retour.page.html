@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-title>Bibliothèque</ion-title>
+
+      <ion-button routerLink="/home-admin">home</ion-button>
+      <ion-button routerLink="/livre">Livres</ion-button>
+      <ion-button routerLink="/list-livre">list</ion-button>
+      <ion-button routerLink="/list-emprunter">list Emprunter</ion-button>
+      <ion-button routerLink="/list-user">list users</ion-button>
+      <ion-button routerLink="/liste-retour">list retour</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <p>Bienvenue</p>
+      <p>Admin</p>
+      <ion-button (click)="logout()">logout</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Liste des retours</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let Retour of Retour">
+      <ion-label>
+        <h2>{{ Retour.title }}</h2>
+        <p>Auteur : {{ Retour.author }}</p>
+        <p>Catégorie : {{ Retour.category }}</p>
+        <p>Description : {{ Retour.description }}</p>
+        <p>livre id : {{ Retour.livreId }}</p>
+        <p>user id : {{ Retour.utilisateurId }}</p>
+        <p>Date retour : {{ formatDate(Retour.dateretour) }}</p>
+        
+      </ion-label>
+   
+      <ion-button color="danger" (click)="deleteRetour(Retour.id)">Supprimer</ion-button>
+
+    </ion-item>
+
+  </ion-list>
+
+
+ 
+</ion-content>

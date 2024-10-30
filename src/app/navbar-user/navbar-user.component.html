@@ -1,0 +1,19 @@
+<!-- src/app/navbar/navbar.component.html -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-title>Bibliothèque</ion-title>
+
+      <ion-button routerLink="/home-user">home</ion-button>
+      <ion-button routerLink="/list">list</ion-button>
+   
+    </ion-buttons>
+    <ion-buttons slot="end">
+  <p>Bienvenue</p>
+      <ion-button (click)="logout()">logout</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

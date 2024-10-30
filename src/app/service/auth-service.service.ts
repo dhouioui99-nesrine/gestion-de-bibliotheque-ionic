@@ -1,67 +1,67 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { getFirestore, doc, setDoc, Firestore, getDoc } from 'firebase/firestore';
-
+import firebase from 'firebase/compat/app';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private auth = getAuth();
-  private firestore = getFirestore();
+  constructor(
+    private afAuth: AngularFireAuth,
+    private firestore: AngularFirestore, private router: Router
+  ) {}
 
-  constructor( private router: Router) {}
-
-  async register(fullName: string, email: string, password: string) {
-    if (!fullName || !email || !password) {
-      throw new Error('Les données utilisateur sont incomplètes : fullName, email ou password est manquant.');
-    }
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
-      const uid = userCredential.user.uid;
-
-      // Enregistrer le nom complet et l'email dans Firestore
-      await setDoc(doc(this.firestore, 'users', uid), {
-        fullName: fullName,
-        email: email
-      });
-
-      console.log('Inscription réussie :', userCredential);
-      this.router.navigate(['/login']);
-      return userCredential;
-    } catch (error) {
-      console.error('Erreur d\'inscription :', error);
-      throw error; // Relancez l'erreur pour la gérer dans le composant
-    }
+  login(email: string, password: string) {
+    return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
+  async register(userData: {
+    firstName: string;
+   
+   
+    email: string;
+    password: string;
+  }) {
 
-  async login(email: string, password: string) {
-    try {
-      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
-      console.log('Connexion réussie :', userCredential);
+    const { firstName,  email, password } = userData;
+    console.log('Tentative d\'inscription avec:', email);
+    return this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        console.log('User registered successfully:', userCredential);
+        if (userCredential.user) {
+          this.firestore.collection('users').doc(userCredential.user.uid).set({
+            firstName,
+         
+            email,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('Error during registration:', error);
+        throw error; // Laissez l'erreur remonter pour la gestion dans le composant
+      });
+  }
+ 
 
-      // Redirection en fonction de l'email
-      if (email === 'admin@gmail.com') {
-        this.router.navigate(['/home']);
-      } else {
-        this.router.navigate(['/livres']);
-      }
-    } catch (error) {
-      console.error('Erreur de connexion :', error);
-      throw error; // Relancer l'erreur pour qu'elle puisse être gérée dans le composant
-    }
+  getUser() {
+    return this.afAuth.user;
+  }
+
+  isLoggedIn() {
+    return this.afAuth.authState.pipe(map(user => !!user));
   }
 
   async logout() {
     try {
-      await signOut(this.auth);
-      console.log('Déconnexion réussie');
+      await this.afAuth.signOut(); // Logs out the user from Firebase
+      this.router.navigate(['/login']); // Redirect to login page
+      console.log("User logged out successfully.");
     } catch (error) {
-      console.error('Erreur de déconnexion :', error);
-      throw error;
+      console.error("Error logging out:", error);
     }
   }
 }

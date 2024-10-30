@@ -1,24 +1,64 @@
+<!-- src/app/navbar/navbar.component.html -->
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Liste des Livres</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-title>Bibliothèque</ion-title>
+
+      <ion-button routerLink="/home-admin">home</ion-button>
+      <ion-button routerLink="/livre">Livres</ion-button>
+      <ion-button routerLink="/list-livre">list</ion-button>
+      <ion-button routerLink="/list-emprunter">list Emprunter</ion-button>
+      <ion-button routerLink="/list-user">list users</ion-button>
+      <ion-button routerLink="/liste-retour">list retour</ion-button>
+    </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button routerLink="/add-livre">Ajouter Livre</ion-button>
+      <p>Bienvenue</p>
+      <p>Admin</p>
+      <ion-button (click)="logout()">logout</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let livre of livres">
-      <ion-label>
-        <h2>{{ livre.title }}</h2>
-        <h3>{{ livre.author }}</h3>
-        <p>{{ livre.description }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
 
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ajouter un Livre</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form  [formGroup]="livreForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+      <ion-label position="stacked">Titre</ion-label>
+      <ion-input formControlName="title" name="title" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Auteur</ion-label>
+      <ion-input formControlName="author" name="author" type="text" required></ion-input>
+    </ion-item>
+
+
+
+    <ion-item>
+      <ion-label position="stacked">Catégorie</ion-label>
+      <ion-select formControlName="category" name="category" placeholder="Choisir la catégorie">
+        <ion-select-option value="fiction">Fiction</ion-select-option>
+        <ion-select-option value="non-fiction">Non-Fiction</ion-select-option>
+        <ion-select-option value="science">Science</ion-select-option>
+        <ion-select-option value="philosophie">Philosophie</ion-select-option>
+        <ion-select-option value="autre">Autre</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea formControlName="description" name="description"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Ajouter le Livre</ion-button>
+  </form>
 </ion-content>

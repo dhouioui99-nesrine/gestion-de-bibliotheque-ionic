@@ -1,44 +1,42 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Se Connecter</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-title>Bibliothèque</ion-title>
+
+      <ion-button routerLink="/home">home</ion-button>
+     
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/register">register</ion-button>
+      <ion-button routerLink="/login">login</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-    <ion-list>
-      <ion-input
-  type="email"
-  fill="solid"
-  label="Email"
-  labelPlacement="floating"
-  helperText="Enter a valid email"
-  errorText="Invalid email"
-  ngModel
-  email
-></ion-input>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Connexion</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<br>
-<ion-input
-type="password"
-fill="solid"
-label="password"
-labelPlacement="floating"
-helperText="Enter a valid password"
-errorText="Invalid password"
-name="password" required
-></ion-input>
+<ion-content>
+  <ion-item>
+    <ion-icon name="mail-outline" slot="start"  style="color: blue;"></ion-icon>
+    <ion-label position="floating" >Email</ion-label>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
+  </ion-item>
 
-    </ion-list>
 
-  
+  <ion-item>
+    <ion-icon name="lock-closed-outline" slot="start" style="color: blue;" ></ion-icon>
+    <ion-label position="floating" >Mot de passe</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="login()" style="--background: blue; color: #ffffff;">Connexion</ion-button>
+ <button #myElement id="open-toast" hidden>button</button>
 
-    <ion-button expand="full" type="submit">Se connecter</ion-button>
-</form>
-
-  <ion-row>
-    <ion-col>
-      <ion-router-link routerLink="/create-account">Pas encore de compte ? Créer un compte</ion-router-link>
-    </ion-col>
-  </ion-row>
+  <ion-toast trigger="open-toast" message="{{err}}" [duration]="5000"></ion-toast>
 </ion-content>

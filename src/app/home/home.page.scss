@@ -25,3 +25,11 @@
 #container a {
   text-decoration: none;
 }
+
+ion-content {
+  --background: #fff url("/assets/bib.jpg") no-repeat center center / cover;
+}
+
+strong{
+  color: black;
+}

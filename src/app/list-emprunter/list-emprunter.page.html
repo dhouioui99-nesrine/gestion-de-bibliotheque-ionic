@@ -1,0 +1,55 @@
+<!-- src/app/navbar/navbar.component.html -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-title>Bibliothèque</ion-title>
+
+      <ion-button routerLink="/home-admin">home</ion-button>
+      <ion-button routerLink="/livre">Livres</ion-button>
+      <ion-button routerLink="/list-livre">list</ion-button>
+      <ion-button routerLink="/list-emprunter">list Emprunter</ion-button>
+      <ion-button routerLink="/list-user">list users</ion-button>
+      <ion-button routerLink="/liste-retour">list retour</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <p>Bienvenue</p>
+      <p>Admin</p>
+      <ion-button (click)="logout()">logout</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Liste des Livres</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let Emprunter of Emprunters">
+      <ion-label>
+        <h2>{{ Emprunter.title }}</h2>
+        <p>Auteur : {{ Emprunter.author }}</p>
+        <p>Catégorie : {{ Emprunter.category }}</p>
+        <p>Description : {{ Emprunter.description }}</p>
+        <p>livre id : {{ Emprunter.livreId }}</p>
+        <p>user id : {{ Emprunter.utilisateurId }}</p>
+        <p>Date d'emprunt : {{ formatDate(Emprunter.dateEmprunt) }}</p>
+        
+      </ion-label>
+      <ion-button fill="outline" (click)="editBook(Emprunter)">Modifier</ion-button>
+      <ion-button color="danger" (click)="deleteEmprunter(Emprunter.id)">Supprimer</ion-button>
+
+    </ion-item>
+
+  </ion-list>
+
+
+ 
+</ion-content>
